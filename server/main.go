@@ -30,7 +30,7 @@ func main() {
 		todo := &Todo{}
 
 		if err := c.BodyParser(todo); err != nil {
-			fmt.Print(err)
+			return err
 		}
 
 		todo.ID = len(todos) + 1
@@ -61,6 +61,6 @@ func main() {
 		return c.JSON(todos)
 	})
 
-	app.Listen(":5173")
+	app.Listen(":4000")
 
 }

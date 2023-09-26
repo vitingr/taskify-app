@@ -24,8 +24,12 @@ const AddTodo = ({ mutate }: { mutate: KeyedMutator<Todo[] | any> }) => {
     setOpen(false)
   }
 
-  const handleStateChange = async (name: string, value: string ) => {
-    setForm((prevForm) => ({ ...prevForm, [name]: value }));
+  const handleStateChange = async (name: string, value: string) => {
+    setForm((prevForm) => {
+      const updatedForm: any = [...prevForm]; 
+      updatedForm[0].values[name] = value; 
+      return updatedForm; 
+    });
   };
 
   const createTodo = async (title: string, body: string) => {
