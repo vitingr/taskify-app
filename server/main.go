@@ -33,8 +33,16 @@ func main() {
 			return err
 		}
 
+		fmt.Print(todo)
+
 		todo.ID = len(todos) + 1
+		todo.Done = false
+
+		fmt.Print(todo)
+
 		todos = append(todos, *todo)
+
+		fmt.Print(todos)
 
 		return c.JSON(todos)
 	})
@@ -49,8 +57,16 @@ func main() {
 		// I = Index || T = Task to do
 		for i, t := range todos {
 			if t.ID == id {
-				todos[i].Done = true
-				break
+
+				if todos[i].Done == true {
+					todos[i].Done = false
+					break
+				} 
+				if todos[i].Done == false {
+					todos[i].Done = true
+					break
+				}
+
 			}
 		}
 

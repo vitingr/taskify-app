@@ -22,6 +22,7 @@
 .main-container {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 650px;
   min-height: 900px;
   background: white;
@@ -112,7 +113,7 @@
 
   & input {
     font-size: 13px;
-    color: #262f409f;
+    color: #262f40af;
     outline: 0;
     padding: 6.5px 0px 6.5px 0px;
     border-bottom: 1px solid #262f4038;
@@ -149,7 +150,7 @@
     cursor: pointer;
   }
 
-  & .action:hover {
+  & .false:hover {
     background: #e5edff;
   }
 
@@ -157,6 +158,15 @@
     font-weight: normal;
     font-size: 12px;
     color: #333333a9;
+  }
+
+  & .done {
+    background: #5272c2;
+    color: white;
+  }
+
+  & .done * {
+    color: white;
   }
 
 }

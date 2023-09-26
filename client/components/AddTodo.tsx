@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { ENDPOINT, Todo } from "../src/App"
-import { KeyedMutator } from "swr";
+
 import { IoArrowBackOutline } from 'react-icons/io5'
 
 interface Form {
@@ -8,7 +8,7 @@ interface Form {
   body: string;
 }
 
-const AddTodo = ({ mutate }: { mutate: KeyedMutator<Todo[] | any> }) => {
+const AddTodo = () => {
 
   const [open, setOpen] = useState(false)
   const [form, setForm] = useState([
@@ -33,6 +33,7 @@ const AddTodo = ({ mutate }: { mutate: KeyedMutator<Todo[] | any> }) => {
   };
 
   const createTodo = async (title: string, body: string) => {
+
     try {
       const updated = await fetch(`${ENDPOINT}/api/todos`, {
         method: "POST",
@@ -41,11 +42,11 @@ const AddTodo = ({ mutate }: { mutate: KeyedMutator<Todo[] | any> }) => {
         },
         body: JSON.stringify({
           title: title,
-          body: body
+          body: body,
+          done: false
         })
       })
   
-      mutate(updated)
       setForm([
         {
           values: {
@@ -75,7 +76,7 @@ const AddTodo = ({ mutate }: { mutate: KeyedMutator<Todo[] | any> }) => {
             <label htmlFor="todoName">Título <span>*</span></label>
             <input type="text" name="title" id="title" placeholder='O que você deseja fazer?' autoComplete='off' maxLength={40} minLength={2} onChange={(e) => handleStateChange("title", e.target.value)} required />
             <label htmlFor="todoName">Descrição <span>*</span></label>
-            <input type="text" name="body" id="body" placeholder='Descreva as atividades a serem realizadas' autoComplete='off' onChange={(e) => handleStateChange("body", e.target.value)} maxLength={40} minLength={2} required />
+            <input type="text" name="body" id="body" placeholder='Descreva as atividades a serem realizadas' autoComplete='off' onChange={(e) => handleStateChange("body", e.target.value)} maxLength={65} minLength={2} required />
 
             <button type='submit'>
               Adicionar Tarefa
